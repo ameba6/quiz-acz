@@ -14,8 +14,15 @@ exports.load = function(req, res, next, quizId){
 
 //GET /quizes
 exports.index = function (req, res) {
-	models.Quiz.findAll().then(function(quizes) {
-		res.render('quizes/index.ejs',{quizes: quizes});
+	var noQuizes = '';
+	var search = req.query.search || '';
+	searchSQL = '%' + search.replace(/ /g, "%") + '%';
+	console.log(search);
+	var whereObj = {where:["pregunta like ?", searchSQL]};
+	models.Quiz.findAll(whereObj).then(function(quizes) {
+		if (quizes.length === 0) {noQuizes= 'No hay preguntas que contengan "' + search + '"' };
+		res.render('quizes/index.ejs',{quizes: quizes,
+																	 noQuizes: noQuizes});
 	}).catch(function(error) { next(error);})
 };
 
