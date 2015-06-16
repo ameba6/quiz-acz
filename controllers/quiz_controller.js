@@ -26,6 +26,10 @@ exports.index = function (req, res) {
 	}).catch(function(error) { next(error);})
 };
 
+//GET /author
+exports.author = function(req, res){
+	res.render('author', {});
+};
 
 //GET /quizes/:id
 exports.show = function(req, res){
@@ -42,6 +46,22 @@ exports.answer = function(req, res){
 															 respuesta: resultado});
 };
 
-exports.author = function(req, res){
-	res.render('author', {});
+//GET /quizes/new
+exports.new = function (req, res){
+	var quiz = models.Quiz.build( // crea objeto quiz
+		{pregunta: "Pregunta", respuesta: "Respuesta"}
+	);
+	
+	res.render('quizes/new', {quiz: quiz});
 };
+
+//POST /quizes/create
+exports.create = function (req, res){
+	var quiz = models.Quiz.build( req.body.quiz );
+	
+	// guarda en DB los campos pregunta y respuesta del quiz
+	quiz.save({fields: ["pregunta", "respuesta"]}).then( function(){
+		res.redirect('/quizes');
+	});  //Redireccion HTTP (URL relativo) lista de preguntas
+};
+

@@ -3,5 +3,11 @@ body 								{ background: #333; }
 #page-wrap:after 		{ content: "Smartphone Layout"; }
 
 h2 spam, section h3 { display: none; }
-body 								{ font-size: xx-large; }
+
+body,								{ font-size: xx-large; }
+
+button							{ font-size: large; }
+
 footer, input 			{ font-size: large; }
+
+.rem 								{ display: none; }

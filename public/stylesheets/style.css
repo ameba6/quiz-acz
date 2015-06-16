@@ -6,6 +6,12 @@ body									{ font: 16px Georgia, serif; }
 												margin-bottom: 1px; color: black;}
 
 section > #body-wrap	{ padding: 20px; }
+
 header, nav, section	{ background: #eee; text-align: center; }
-footer								{ background: #eee; text-align: center; }
+
+footer, table					{ background: #eee; text-align: center; }
+
+table 								{ background: #eee; text-align: center;
+												margin: 10px auto;}
+
 nav spam, footer a		{ margin: 0px 10px 0px 0px; }
