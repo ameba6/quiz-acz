@@ -18,17 +18,25 @@
 	<body>
 		<div id='page-wrap'>
 			<header class='main' id='h1'>
-				<h2>Quiz <spam>: el juego de las preguntas</spam></h2>
+				<h2>Quiz <span>: el juego de las preguntas</span></h2>
 			</header>
 			
 			<nav class='main' id='n1' role='navigation'>
-				<spam><a href='/'>Inicio</a></spam>
-				<spam><a href='/quizes'>Preguntas</a></spam>				
-				<spam><a href='/author'>Créditos</a></spam>
+				<span><a href='/'>Inicio</a></span>
+				<span><a href='/quizes'>Preguntas</a></span>				
+				<span><a href='/author'>Créditos</a></span>
 			</nav>
 			
 			<section class='main' id='s1'>
-				<%- body%>
+				<% if (errors.length) { %>
+				<span class='ErrorMsgs'>
+					Corregir errores:<br/>
+					<% for (var i in errors) { %>
+					<span> <%= errors[i].message %></span><br/>
+					<% } %>
+				</span>
+				<% } %>
+				<div><%- body%></div>
 			</section>
 			
 			<footer class='main' id='f1'>
