@@ -1,6 +1,30 @@
+<br>
+<label for="tema" class="rem">Tema:</label>
+
+<select  id="mySelect" name="quiz[tema]">
+	<%	var Temas = ["Varios", "Humanidades", "Ocio", "Ciencia", "Tecnologia"];
+			var defecto = "";
+			for( var i in Temas) { %>
+	<option value="<%= Temas[i] %>"><%= Temas[i] %></option>
+	<% } %>
+</select><br>
+
 <label for="preg" class="rem">Pregunta:</label>
 <input type="text" id="preg" name="quiz[pregunta]" placeholder="Pregunta" value="<%= quiz.pregunta %>"/> <p>
 <label for="resp" class="rem">Respuesta:</label>
 <input type="text" id="resp" name="quiz[respuesta]" placeholder="Respuesta" value="<%= quiz.respuesta %>"/> <p>
 <a href="/quizes"><button type="button">Cancelar</button></a>
 <input type="submit" value="Salvar">
+
+<script> // Script para poner por defecto en el select el valor actial de Quiz.tema
+var temp = "<%= quiz.tema %>";
+var mySelect = document.getElementById('mySelect');
+
+for(var i, j = 0; i = mySelect.options[j]; j++) {
+  if(i.value === temp) {
+    mySelect.selectedIndex = j;
+    break;
+  }
+}
+
+</script>
