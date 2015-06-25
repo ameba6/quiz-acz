@@ -1,0 +1,8 @@
+  <label for="tema" class="rem">Tema:</label>
+  <select name="quiz[tema]" id="tema" required>
+    <option value="Ciencia" <%if (quiz.tema==="Ciencia"){%> selected <%}%>>Ciencia</option>
+    <option value="Humanidades" <%if (quiz.tema==="Humanidades"){%> selected <%}%>>Humanidades</option>
+    <option value="Ocio" <%if (quiz.tema==="Ocio"){%> selected <%}%>>Ocio</option>
+    <option value="Tecnología" <%if (quiz.tema==="Tecnología"){%> selected <%}%>>Tecnología</option>
+    <option value="Otro" <%if (quiz.tema==="Otro"){%> selected <%}%>>Otro</option>  
+  </select>
