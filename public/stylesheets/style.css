@@ -17,3 +17,5 @@ table 								{ background: #eee; text-align: center;
 nav span, footer a		{ margin: 0px 1000px 0px 0px; }
 
 .ErrorMsgs						{ color: #f61; font-size: smaller }
+
+.right								{float: right;}
