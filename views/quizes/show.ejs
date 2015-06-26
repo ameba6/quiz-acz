@@ -9,7 +9,16 @@
 
 
 <p><strong>Comentarios:</strong></p>
+<table>
 <% for(index in quiz.Comments){ %>
-		<p>- <%= quiz.Comments[index].texto %></p>
+	<% if(quiz.Comments[index].publicado || session.user) { %>
+		<tr>
+			<td><%= quiz.Comments[index].texto %></td>
+			<% if(session.user && !quiz.Comments[index].publicado) { %>
+				<td><a href="/quizes/<%= quiz.id %>/comments/<%= quiz.Comments[index].id %>/publish">
+					<button>Publicar</button></a></td>
+			</tr>
+		<% } %>
+	<% } %>
 <% } %>
-
+</table>
