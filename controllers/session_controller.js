@@ -23,7 +23,7 @@ exports.create = function(req, res) {
 	var userController = require('./user_controller');
 	userController.autenticar(login, password, function(error, user){
 		if (error) {	// si hay error retornamos mensajes de error de sesión
-			req.session.errors = [{"message": 'Se ha producido un error'+error}];
+			req.session.errors = [{"message": 'Se ha producido un '+error}];
 			res.redirect("/login");
 			return;
 		}
@@ -40,4 +40,21 @@ exports.create = function(req, res) {
 exports.destroy = function(req, res) {
 	delete req.session.user;
 	res.redirect(req.session.redir.toString()); // redirect a path anterior a login
+};
+
+// Autologout
+exports.autoLogout = function(req, res, next) {
+
+	if (req.session.user) {
+		var lastTime = req.session.lastTime || Date.now(); // Miro si la propiedad esta definida
+		req.session.lastTime = lastTime; // defino session.lastTime con el valor de lastTime
+		var nowTime = Date.now();		// Capturo el tiempo actual.
+		if (nowTime - lastTime > 120000) {
+			req.session.errors = [{"message": 'Timeout: han pasado mas de 2 minutos sin actividad, registrate otra vez.'}];
+			delete req.session.user;
+			res.redirect("/login");
+		};
+		req.session.lastTime = nowTime;
+	}
+	next();
 };
